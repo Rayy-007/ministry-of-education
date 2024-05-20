@@ -1,15 +1,24 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { LandingPage, TeamPortalOne, TeamPortalTwo } from "./components";
+import { LandingPage, Login, TeamPortalOne, TeamPortalTwo } from "./components";
+import { AuthProvider } from "./hooks/AuthContext";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/portal1" element={<TeamPortalOne />} />
-        <Route path="/portal2" element={<TeamPortalTwo />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/portal1" element={<PrivateRoute />}>
+            <Route path="" element={<TeamPortalOne />} />
+          </Route>
+          <Route path="/portal2" element={<PrivateRoute />}>
+            <Route path="" element={<TeamPortalTwo />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }
