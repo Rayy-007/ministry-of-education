@@ -12,21 +12,23 @@ import PrivateRoute from "./PrivateRoute";
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/portal1" element={<PrivateRoute />}>
-            <Route path="" element={<TeamPortalOne />} />
-          </Route>
-          <Route path="/portal2" element={<PrivateRoute />}>
-            <Route path="" element={<TeamPortalTwo />} />
-          </Route>
-        </Routes>
-      </AuthProvider>
-    </Router>
+    <div className="bg-neutral-background">
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/portal1" element={<PrivateRoute />}>
+              <Route path="" element={<TeamPortalOne />} />
+            </Route>
+            <Route path="/portal2" element={<PrivateRoute />}>
+              <Route path="" element={<TeamPortalTwo />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </div>
   );
 }
 
