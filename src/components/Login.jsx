@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../hooks/AuthContext";
+import Navbar from "./util/Navbar";
+import { Input } from "@/components/ui/input";
+import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { login } = useAuth();
@@ -22,33 +26,52 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={hadleSignIn}>
-      <div className="field padding-bottom--24">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleInputChange}
-          placeholder="Email"
-        />
-      </div>
-      <div className="field padding-bottom--24">
-        <label htmlFor="password">Password</label>
+    <div>
+      <Navbar />
+      <div className="lg:w-2/6 px-6 md:w-3/6 mt-16 m-auto flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-2">
+          <h3 className="text-2xl font-bold">Login an account</h3>
+          <p className="text-base ">Enter your email to sign in for this app</p>
+        </div>
+        <form className="flex flex-col gap-4 w-full " onSubmit={hadleSignIn}>
+          <div className="field padding-bottom--24">
+            <Input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Email@gmail.com"
+            />
+          </div>
+          <div className="field padding-bottom--24">
+            <Input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              placeholder="Password"
+            />
+          </div>
+          <Button type="submit">Sign in with email</Button>
+        </form>
 
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-          placeholder="Password"
-        />
-      </div>
+        <div className="flex items-center w-full">
+          <div className="flex-grow border-t border-foreground"></div>
+          <span className="mx-4 text-lg text-neutral-light">or </span>
+          <div className="flex-grow border-t border-foreground"></div>
+        </div>
 
-      <div className="field padding-bottom--24">
-        <input type="submit" value={"Login"} />
+        <Link className="w-full" to={"/reset-password"}>
+          <Button className="w-full bg-slate-300 text-black hover:bg-slate-400">
+            Reset Password
+          </Button>
+        </Link>
+        <p className="text-center">
+          By clicking continue, you agree to our <b>Terms of Service</b> and
+          <b>Privacy Policy</b>
+        </p>
       </div>
-    </form>
+    </div>
   );
 };
 

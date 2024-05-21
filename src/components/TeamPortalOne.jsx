@@ -1,15 +1,17 @@
 import React from "react";
-import { useAuth } from "../hooks/AuthContext";
+
 import { Link } from "react-router-dom";
+import PortalNavbar from "./util/PortalNavbar";
 
 const TeamPortalOne = () => {
-  const { logout } = useAuth();
   return (
     <div>
-      <h2>TeamPortalOne</h2>
-      <button onClick={() => logout()}>Log Out</button>
+      <PortalNavbar />
+      <div className="px-10 py-6 lg:px-32">
+        <h2>TeamPortalOne</h2>
 
-      <Link to={"/reset-password"}>Reset Password</Link>
+        <Link to={"/reset-password"}>Reset Password</Link>
+      </div>
     </div>
   );
 };
